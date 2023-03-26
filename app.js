@@ -6,14 +6,12 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 
 const api = process.env.API_URL;
+const chargingstationsRouter = require("./Routes/chargingstations");
 
 // Middleware //
 app.use(express.json());
 app.use(morgan("tiny"));
-
-app.get(`${api}/chargingstations`, (req, res) => {
-  res.send("Hello World!");
-});
+app.use(`${api}/chargingstations`, chargingstationsRouter);
 
 mongoose
   .connect(process.env.API_MONGODB_URL)
