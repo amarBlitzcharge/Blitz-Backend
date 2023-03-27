@@ -11,7 +11,9 @@ const chargingstationsRouter = require("./Routes/chargingstations");
 // Middleware //
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(`${api}/chargingstations`, chargingstationsRouter);
+
+// chargingstationsRouter//
+app.use(`${api}chargingstations`, chargingstationsRouter);
 
 mongoose
   .connect(process.env.API_MONGODB_URL)

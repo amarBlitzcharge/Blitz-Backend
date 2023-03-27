@@ -1,4 +1,4 @@
-const ChargingStation = require("../Models/chargingStations");
+const { ChargingStation } = require("../Models/chargingStations");
 const express = require("express");
 const router = express.Router();
 
@@ -15,6 +15,7 @@ router.get(`/`, async (req, res) => {
 
 // Upload charging station //
 router.post(`/`, async (req, res) => {
+  // post charging station//
   const chargingStation = new ChargingStation({
     name: req.body.name,
     street: req.body.street,
@@ -27,11 +28,14 @@ router.post(`/`, async (req, res) => {
     connectortype: req.body.connectortype,
     contact: req.body.contact,
   });
-  chargingStation = await chargingStation.save();
-  if (!chargingStation) {
-    return res.status(500).send("Charging station not saved");
-  }
-  res.send(chargingStation);
+  chargingStation
+    .save()
+    .then((newChargingStations) => {
+      res.status(201).json(chargingStation);
+    })
+    .catch((err) => {
+      res.status(500).json({ success: false, message: err });
+    });
 });
 
 module.exports = router;
