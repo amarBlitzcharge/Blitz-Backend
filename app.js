@@ -4,6 +4,8 @@ const app = express();
 require("dotenv/config");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+// host configuration//
+const server = require("http").createServer(app);
 
 const api = process.env.API_URL;
 const chargingstationsRouter = require("./Routes/chargingstations");
@@ -24,7 +26,13 @@ mongoose
     console.log(err);
   });
 
-// port number//
-app.listen(3000, () => {
-  console.log("listening on port 3000");
-});
+// port number local//
+// app.listen(3000, () => {
+//   console.log("listening on port 3000");
+// });
+
+// Production//
+server.listen(process.env.PORT || 3000, function () {
+   var port = server.address().port;
+   console.log("Backend listening" + port);
+})
