@@ -24,8 +24,9 @@ router.post(`/`, async (req, res) => {
     city: req.body.city,
     state: req.body.state,
     country: req.body.country,
-    powertype: req.body.powertype,
+    capacity: req.body.capacity,
     connectortype: req.body.connectortype,
+    ports: req.body.ports,
     contact: req.body.contact,
   });
   chargingStation
