@@ -29,13 +29,17 @@ const chargingstationsSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  powertype: {
+  capacity: {
     type: String,
     required: true,
   },
   connectortype: {
     type: String,
     required: true,
+  },
+  ports:{
+    type: String,
+    required: false,
   },
   contact: {
     type: String,
